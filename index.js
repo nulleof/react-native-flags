@@ -13,11 +13,15 @@ type Props = {
 
 const Flag = ({ size = 16, code, type = 'flat', style }: Props) => {
   const flag = flags[type][`icons${size}`][code];
-  const unknownFlag = flags[type][`icons${size}`]['unknown'];
+  // const unknownFlag = flags[type][`icons${size}`]['unknown'];
+  
+  if (!flag) {
+    return null;
+  }
 
   return (
     <Image
-      source={flag || unknownFlag}
+      source={flag}
       style={[{ width: size, height: size }, style]}
     />
   );
